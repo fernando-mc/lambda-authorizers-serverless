@@ -56,14 +56,9 @@ resources:
           WriteCapacityUnits: 1
 
 plugins:
-  - serverless-finch
   - serverless-python-requirements
 
 custom:
-  client:
-    bucketName: your-unique-bucketname-here
-    distributionFolder: frontend
-    errorDocument: index.html
   pythonRequirements:
     dockerizePip: non-linux
 

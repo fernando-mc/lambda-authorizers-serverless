@@ -2,12 +2,8 @@
     "name": "serverless-jams",
     "description": "",
     "version": "0.1.0",
-    "dependencies": {
-      "serverless-finch": "^2.5.2"
-    },
     "devDependencies": {
-      "serverless-finch": "^2.5.2",
       "serverless-python-requirements": "^5.0.1"
     }
-  }
+}
   
