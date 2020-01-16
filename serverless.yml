@@ -41,7 +41,7 @@ functions:
 
 resources:
   Resources:
-    usersTable:
+    songsTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: ${self:provider.environment.DYNAMODB_TABLE}
