@@ -8,14 +8,14 @@ AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
 AUTH0_API_ID = os.environ.get("AUTH0_API_ID")
 
 def verify_token(token):
-    # Validate the token to make sure it's authentic
+    # This grabs the public key information and metadata
     jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
     jwks = json.loads(jsonurl.read())
-    # This currently expects the token to have three distinct sections 
-    # each separated by a period.
+    # This will get the unverified token header to compare against
     unverified_header = jwt.get_unverified_header(token)
     rsa_key = {}
     for key in jwks["keys"]:
+        # Here we compare the public metadata and unverified header
         if key["kid"] == unverified_header["kid"]:
             rsa_key = {
                 "kty": key["kty"],
@@ -25,7 +25,7 @@ def verify_token(token):
                 "e": key["e"]
             }
     if rsa_key:
-        try:  # to validate the jwt
+        try:  # `decode` is where we do the actual verification
             payload = jwt.decode(
                 token,
                 rsa_key,
